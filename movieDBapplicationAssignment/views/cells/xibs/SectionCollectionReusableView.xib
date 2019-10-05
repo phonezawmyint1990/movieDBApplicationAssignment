@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="SectionCollectionReusableView" customModule="movieDBapplicationAssignment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7m-An-GqY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbr-nf-GJB">
+                            <rect key="frame" x="20" y="0.0" width="300" height="50"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Bbr-nf-GJB" secondAttribute="trailing" id="Bnq-D4-LX6"/>
+                        <constraint firstAttribute="bottom" secondItem="Bbr-nf-GJB" secondAttribute="bottom" id="ceN-9q-Bpm"/>
+                        <constraint firstItem="Bbr-nf-GJB" firstAttribute="top" secondItem="B7m-An-GqY" secondAttribute="top" id="mED-XE-dFS"/>
+                        <constraint firstItem="Bbr-nf-GJB" firstAttribute="leading" secondItem="B7m-An-GqY" secondAttribute="leading" constant="20" id="rg1-xj-eOz"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="B7m-An-GqY" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="IDb-6z-REK"/>
+                <constraint firstItem="B7m-An-GqY" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="awp-Hu-H1q"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="B7m-An-GqY" secondAttribute="trailing" id="eb0-hx-AwM"/>
+                <constraint firstAttribute="bottom" secondItem="B7m-An-GqY" secondAttribute="bottom" id="uRz-50-r9L"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="lblSectionTitle" destination="Bbr-nf-GJB" id="TV9-Kn-eHb"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>

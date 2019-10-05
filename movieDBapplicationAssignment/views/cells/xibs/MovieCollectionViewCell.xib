@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieCollectionViewCell" customModule="movieDBapplicationAssignment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9No-eH-sHf">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_movie" translatesAutoresizingMaskIntoConstraints="NO" id="Ewu-kO-HMw">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ewu-kO-HMw" firstAttribute="top" secondItem="9No-eH-sHf" secondAttribute="top" id="ghd-Yl-bkM"/>
+                            <constraint firstAttribute="trailing" secondItem="Ewu-kO-HMw" secondAttribute="trailing" id="hhd-hi-Aye"/>
+                            <constraint firstAttribute="bottom" secondItem="Ewu-kO-HMw" secondAttribute="bottom" id="jmD-JX-Dmm"/>
+                            <constraint firstItem="Ewu-kO-HMw" firstAttribute="leading" secondItem="9No-eH-sHf" secondAttribute="leading" id="wdm-1k-5yj"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="9No-eH-sHf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5nF-cP-q8G"/>
+                <constraint firstAttribute="bottom" secondItem="9No-eH-sHf" secondAttribute="bottom" id="8qL-7b-fa4"/>
+                <constraint firstItem="9No-eH-sHf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XXT-2l-nO3"/>
+                <constraint firstAttribute="trailing" secondItem="9No-eH-sHf" secondAttribute="trailing" id="gKD-tP-S1u"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="imageViewMoviePoster" destination="Ewu-kO-HMw" id="9ok-KE-ohH"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="img_movie" width="1000" height="1500"/>
+    </resources>
+</document>
