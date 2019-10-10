@@ -18,4 +18,7 @@ class Routes {
     static let ROUTE_CREATE_REQUEST_TOKEN = "\(API.BASE_URL)/authentication/token/new?api_key=\(API.KEY)"
     static let ROUTE_CREATE_SESSION_ID = "\(API.BASE_URL)/authentication/session/new?api_key=\(API.KEY)"
     static let ROUTE_VALIDATE_WITH_LOGIN = "\(API.BASE_URL)/authentication/token/validate_with_login?api_key=\(API.KEY)"
+    static let ROUTE_CREATE_REQUEST_TOKEN_WITH_AUTH_LOGIN = "\(API.BASE_URL)/authentication/token/validate_with_login?api_key=\(API.KEY)"
+    static let ROUTE_GET_ACCOUNT = "\(API.BASE_URL)/movie/account"
+   
 }

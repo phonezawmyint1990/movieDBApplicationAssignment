@@ -13,17 +13,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InnerCollectionViewCell" customModule="movieDBapplicationAssignment" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="126" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="126" height="70"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwW-s6-Jx7">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="70"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFR-B5-SDE">
+                                <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upl-Ek-GmJ">
+                                        <rect key="frame" x="20" y="25" width="86" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Upl-Ek-GmJ" firstAttribute="centerY" secondItem="WFR-B5-SDE" secondAttribute="centerY" id="Lhb-Fu-GCL"/>
+                                    <constraint firstAttribute="height" constant="50" id="PIS-Vi-Awe"/>
+                                    <constraint firstItem="Upl-Ek-GmJ" firstAttribute="leading" secondItem="WFR-B5-SDE" secondAttribute="leading" constant="20" id="XYC-Bc-MuN"/>
+                                    <constraint firstItem="Upl-Ek-GmJ" firstAttribute="centerX" secondItem="WFR-B5-SDE" secondAttribute="centerX" id="ggL-7o-s0e"/>
+                                    <constraint firstAttribute="trailing" secondItem="Upl-Ek-GmJ" secondAttribute="trailing" constant="20" id="jKm-yg-Fb2"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HTm-ug-2be">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="126" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qVd-IW-YBF">
                                     <size key="itemSize" width="50" height="50"/>
@@ -37,7 +56,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="HTm-ug-2be" secondAttribute="trailing" id="Ddc-MS-0rH"/>
                             <constraint firstItem="HTm-ug-2be" firstAttribute="leading" secondItem="RwW-s6-Jx7" secondAttribute="leading" id="Dfk-wQ-5mq"/>
-                            <constraint firstItem="HTm-ug-2be" firstAttribute="top" secondItem="RwW-s6-Jx7" secondAttribute="top" id="mha-Q8-ppS"/>
+                            <constraint firstAttribute="trailing" secondItem="WFR-B5-SDE" secondAttribute="trailing" id="Evb-e7-GXw"/>
+                            <constraint firstItem="WFR-B5-SDE" firstAttribute="top" secondItem="RwW-s6-Jx7" secondAttribute="top" id="c1d-FE-m9F"/>
+                            <constraint firstItem="WFR-B5-SDE" firstAttribute="leading" secondItem="RwW-s6-Jx7" secondAttribute="leading" id="dhJ-bv-I2K"/>
+                            <constraint firstItem="HTm-ug-2be" firstAttribute="top" secondItem="WFR-B5-SDE" secondAttribute="bottom" id="mha-Q8-ppS"/>
                             <constraint firstAttribute="bottom" secondItem="HTm-ug-2be" secondAttribute="bottom" id="vov-5T-bzz"/>
                         </constraints>
                     </view>
@@ -50,9 +72,12 @@
                 <constraint firstItem="RwW-s6-Jx7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="y4K-H1-BwJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="126" height="70"/>
             <connections>
+                <outlet property="lblMovieHeader" destination="Upl-Ek-GmJ" id="H2o-eB-ZI2"/>
                 <outlet property="movieCollectionView" destination="HTm-ug-2be" id="lmx-DV-OBq"/>
             </connections>
+            <point key="canvasLocation" x="192.75362318840581" y="118.52678571428571"/>
         </collectionViewCell>
     </objects>
 </document>

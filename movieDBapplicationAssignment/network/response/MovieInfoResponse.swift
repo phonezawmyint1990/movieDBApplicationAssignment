@@ -123,8 +123,6 @@ struct MovieInfoResponse : Codable {
         movie.revenue = data.revenue ?? 0
         movie.runtime = data.runtime ?? 0
         movie.tagline = data.tagline
-        
         return movie
     }
-    
 }

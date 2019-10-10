@@ -1,4 +1,6 @@
 PODS:
+  - FittedSheets (1.4.4)
+  - IQKeyboardManagerSwift (6.4.0)
   - ReachabilitySwift (4.3.1)
   - Realm (3.17.1):
     - Realm/Headers (= 3.17.1)
@@ -11,6 +13,8 @@ PODS:
   - YoutubePlayer-in-WKWebView (0.3.1)
 
 DEPENDENCIES:
+  - FittedSheets
+  - IQKeyboardManagerSwift
   - ReachabilitySwift
   - RealmSwift
   - SDWebImage (~> 5.0)
@@ -18,6 +22,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FittedSheets
+    - IQKeyboardManagerSwift
     - ReachabilitySwift
     - Realm
     - RealmSwift
@@ -25,12 +31,14 @@ SPEC REPOS:
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
+  FittedSheets: f56b96c7bd81585d9a183c2a06abe176fa0b55db
+  IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   Realm: c204f1a890f07dea43b14132a6aad118c054b8f2
   RealmSwift: 4d3c9233544b9cd08a8913e0872b9038eb99b054
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   YoutubePlayer-in-WKWebView: 86f6b4c04797296071585b92724f3904d0273f12
 
-PODFILE CHECKSUM: 93ef20f59bb99c0ba65c44d228f3e86cbcb4fa93
+PODFILE CHECKSUM: 013129520f6678fa8f8a994f60795df7a6077a73
 
 COCOAPODS: 1.7.5

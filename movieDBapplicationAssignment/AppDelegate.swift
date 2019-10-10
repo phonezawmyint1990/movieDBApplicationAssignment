@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import RealmSwift
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print(Realm.Configuration.defaultConfiguration.fileURL?.absoluteString ?? "")
         print("User Default => \(UserDefaults.standard.string(forKey: SESSION_ID))")
+        IQKeyboardManager.shared.enable = true
         return true
     }
 

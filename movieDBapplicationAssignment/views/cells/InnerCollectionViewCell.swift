@@ -12,11 +12,12 @@ import RealmSwift
 class InnerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
+    @IBOutlet weak var lblMovieHeader: UILabel!
+    
     let realm = try! Realm()
-    var movieList : Results<MovieVO>?
-    
-   
-    
+    //var movieList : Results<MovieVO>?
+    var movieHeader: String?
+    var movieList : [MovieVO]?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,10 +30,22 @@ class InnerCollectionViewCell: UICollectionViewCell {
         layout.itemSize = CGSize(width: 100, height: 150)
         
         movieCollectionView.register(UINib(nibName: String(describing: MovieCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: MovieCollectionViewCell.self))
-         self.movieList = realm.objects(MovieVO.self)
+       //  self.movieList = realm.objects(MovieVO.self)
+        
     }
-
     
+//    func bindData(_ movieList : Results<MovieVO>, movieHeader: String){
+//        self.movieList = movieList
+//        lblMovieHeader.text = movieHeader ?? ""
+//        movieCollectionView.reloadData()
+//    }
+    
+    func bindData(_ movieList : [MovieVO]?, movieHeader: String){
+        guard let movList = movieList else {return}
+        self.movieList = movList
+        lblMovieHeader.text = movieHeader ?? ""
+        movieCollectionView.reloadData()
+    }
 }
 
 extension InnerCollectionViewCell: UICollectionViewDataSource{
@@ -58,7 +71,7 @@ extension InnerCollectionViewCell: MovieDetailsDelegate {
     func onClickMovieDetails(objMovie: MovieVO) {
         let storboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storboard.instantiateViewController(withIdentifier: String(describing: MovieDetailsViewController.self)) as! MovieDetailsViewController
-        
+            vc.movieId = objMovie.id
         self.window?.rootViewController?.present(vc, animated: true)
     }
 }

@@ -37,11 +37,9 @@ class MovieModel {
     
     func fetchMovieVideo(movieId : Int, completion: @escaping ([VideoKeyResponse]) -> Void) {
         let route = URL(string: "\(Routes.ROUTE_MOVIE_DETAILS)/\(movieId)/videos?api_key=\(API.KEY)")!
-        print("\(route)")
         URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
             let response : VideoResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
             if let data = response {
-                print(data.results.count)
                 completion(data.results)
             }else{
                 completion([VideoKeyResponse]())
@@ -109,6 +107,20 @@ class MovieModel {
         
     }
     
+    //
+    func fetchSimilarMovies(pageId : Int = 1,movieId : Int, completion: @escaping ([MovieInfoResponse]) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_MOVIE_DETAILS)/\(movieId)/similar?api_key=\(API.KEY)")!
+         print("Route",route)
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            if let data = response {
+                completion(data.results)
+            }else{
+                completion([MovieInfoResponse]())
+            }
+            }.resume()
+    }
+    
     func fetchMovieGenres(completion : @escaping ([MovieGenreResponse]) -> Void ) {
         
         let route = URL(string: Routes.ROUTE_MOVIE_GENRES)!
@@ -131,6 +143,41 @@ class MovieModel {
         }
         task.resume()
     }
+    
+    func fetchRequestTokenWithAuthenticationLogin(request_Token: String,completion: @escaping(RequestTokenResponse)-> Void){
+        let route = URL(string: Routes.ROUTE_CREATE_REQUEST_TOKEN_WITH_AUTH_LOGIN)!
+        print("Route\(route)")
+        var  request = URLRequest(url: route)
+        request.httpMethod = "POST"
+        let pram = ["username": "PhoneZawMyint",
+                    "password": "12345678",
+                    "request_token":request_Token]
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: pram as NSObject, options: [])
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+                print("Data",data!)
+                print("UrlResponse",urlResponse)
+                do{
+                    if let httpresponse = urlResponse as? HTTPURLResponse {
+                        let statusCode = httpresponse.statusCode
+                        if statusCode == 200 {
+                            let decoder = JSONDecoder()
+                            let session = try decoder.decode(RequestTokenResponse.self, from: data!)
+                            completion(session)
+                        }
+                    }
+                }catch let err{
+                    print("Err",err.localizedDescription)
+                }
+            }
+            task.resume()
+        }catch let error{
+            print("Failed",error.localizedDescription)
+        }
+    }
+    
+    
     
     func fetchRequestSessionId(request_Token: String,completion: @escaping(SessionIdResponse)-> Void){
         let route = URL(string: Routes.ROUTE_CREATE_SESSION_ID)!
@@ -162,6 +209,18 @@ class MovieModel {
         }catch let error{
             print("Failed",error.localizedDescription)
         }
+    }
+    
+    func fetchAccount(sessionId : String, completion: @escaping (AccountUser) -> Void) {
+        let route = URL(string: "\(Routes.ROUTE_GET_ACCOUNT)?api_key=\(API.KEY)&session_id=\(sessionId)")!
+        print("ROUTe",route)
+        URLSession.shared.dataTask(with: route) { (data, urlResponse, error) in
+            let response : AccountUser? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
+            print("REsponse",response)
+            if let data = response {
+                completion(data)
+            }
+            }.resume()
     }
     
     func responseHandler<T : Decodable>(data : Data?, urlResponse : URLResponse?, error : Error?) -> T? {

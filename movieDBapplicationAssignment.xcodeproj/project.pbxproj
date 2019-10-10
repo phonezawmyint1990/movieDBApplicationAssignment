@@ -34,6 +34,8 @@
 		FB319E7A2346637A00DD97D4 /* SectionCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB319E782346637A00DD97D4 /* SectionCollectionReusableView.xib */; };
 		FB319E7D234672A900DD97D4 /* InnerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB319E7B234672A900DD97D4 /* InnerCollectionViewCell.swift */; };
 		FB319E7E234672A900DD97D4 /* InnerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB319E7C234672A900DD97D4 /* InnerCollectionViewCell.xib */; };
+		FB36E6E2234F08040020A5B1 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB36E6E1234F08040020A5B1 /* MovieViewController.swift */; };
+		FB36E6E4234F27580020A5B1 /* AccountUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB36E6E3234F27580020A5B1 /* AccountUser.swift */; };
 		FB3EBF992347BBE00065318C /* MovieDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3EBF982347BBE00065318C /* MovieDetailsDelegate.swift */; };
 		FB3EBF9B2347BF5D0065318C /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3EBF9A2347BF5D0065318C /* MovieDetailsViewController.swift */; };
 		FB3EBF9D2347E9F40065318C /* VideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3EBF9C2347E9F40065318C /* VideoResponse.swift */; };
@@ -49,6 +51,7 @@
 		FB52E3FF2345AC6E006E0E70 /* CommingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52E3FE2345AC6E006E0E70 /* CommingSoonViewController.swift */; };
 		FB52E4012345AC7E006E0E70 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52E4002345AC7E006E0E70 /* DownloadViewController.swift */; };
 		FB52E4032345AC8F006E0E70 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB52E4022345AC8F006E0E70 /* LoginViewController.swift */; };
+		FBC773DC234DE66D00DD25CA /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC773DB234DE66D00DD25CA /* UserDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +84,8 @@
 		FB319E782346637A00DD97D4 /* SectionCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionCollectionReusableView.xib; sourceTree = "<group>"; };
 		FB319E7B234672A900DD97D4 /* InnerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB319E7C234672A900DD97D4 /* InnerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InnerCollectionViewCell.xib; sourceTree = "<group>"; };
+		FB36E6E1234F08040020A5B1 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		FB36E6E3234F27580020A5B1 /* AccountUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUser.swift; sourceTree = "<group>"; };
 		FB3EBF982347BBE00065318C /* MovieDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsDelegate.swift; sourceTree = "<group>"; };
 		FB3EBF9A2347BF5D0065318C /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		FB3EBF9C2347E9F40065318C /* VideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResponse.swift; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		FB52E3FE2345AC6E006E0E70 /* CommingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommingSoonViewController.swift; sourceTree = "<group>"; };
 		FB52E4002345AC7E006E0E70 /* DownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		FB52E4022345AC8F006E0E70 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FBC773DB234DE66D00DD25CA /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 				FB20DD24234730D1000F660E /* User.swift */,
 				FB3EBF9C2347E9F40065318C /* VideoResponse.swift */,
 				FB3EBF9E2347EB5F0065318C /* VideoKeyResponse.swift */,
+				FB36E6E3234F27580020A5B1 /* AccountUser.swift */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -249,6 +256,8 @@
 				FB52E4002345AC7E006E0E70 /* DownloadViewController.swift */,
 				FB52E4022345AC8F006E0E70 /* LoginViewController.swift */,
 				FB3EBF9A2347BF5D0065318C /* MovieDetailsViewController.swift */,
+				FBC773DB234DE66D00DD25CA /* UserDetailsViewController.swift */,
+				FB36E6E1234F08040020A5B1 /* MovieViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -418,6 +427,7 @@
 				FB52E3E9234596B4006E0E70 /* movieDBapplicationAssignment.xcdatamodeld in Sources */,
 				FB20DD25234730D1000F660E /* User.swift in Sources */,
 				FB319E7D234672A900DD97D4 /* InnerCollectionViewCell.swift in Sources */,
+				FB36E6E4234F27580020A5B1 /* AccountUser.swift in Sources */,
 				FB319E6623464C3700DD97D4 /* MovieGenreListResponse.swift in Sources */,
 				FB319E5C23464B2900DD97D4 /* Dialog.swift in Sources */,
 				FB52E4012345AC7E006E0E70 /* DownloadViewController.swift in Sources */,
@@ -434,8 +444,10 @@
 				FB319E6E23464DA400DD97D4 /* MovieModel.swift in Sources */,
 				FB3EBF9B2347BF5D0065318C /* MovieDetailsViewController.swift in Sources */,
 				FB3EBF992347BBE00065318C /* MovieDetailsDelegate.swift in Sources */,
+				FB36E6E2234F08040020A5B1 /* MovieViewController.swift in Sources */,
 				FB1614BD23485064002FB487 /* MovieListCollectionViewCell.swift in Sources */,
 				FB1614B923484BA9002FB487 /* LikeMovieVO.swift in Sources */,
+				FBC773DC234DE66D00DD25CA /* UserDetailsViewController.swift in Sources */,
 				FB319E5A23464B0000DD97D4 /* NetworkUtil.swift in Sources */,
 				FB319E6823464C5600DD97D4 /* MovieGenreResponse.swift in Sources */,
 				FB52E3FB2345AC4B006E0E70 /* HomeViewController.swift in Sources */,

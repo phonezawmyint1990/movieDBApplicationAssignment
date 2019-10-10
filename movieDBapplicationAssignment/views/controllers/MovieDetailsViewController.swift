@@ -11,9 +11,10 @@ import RealmSwift
 import SDWebImage
 import AVKit
 import YoutubePlayer_in_WKWebView
-
+import FittedSheets
 
 class MovieDetailsViewController: UIViewController {
+    
     var movieId : Int = 0
     @IBOutlet weak var moreLikeCollectionView: UICollectionView!
     
@@ -22,16 +23,20 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var lblAdult: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblOverview: UILabel!
+    @IBOutlet weak var btnPlay: UIButton!
     
     let videoPlayer = AVPlayerViewController()
     let realm = try! Realm()
-    
+    var movieList:  [MovieVO]?
+    var key = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionViews()
         if let data = MovieVO.getMovieById(movieId: movieId, realm: realm) {
             self.bindData(data: data)
         }
+        btnPlay.layer.cornerRadius = 10
+        fetchSimilarMovies()
     }
     
     fileprivate func bindData(data : MovieVO?) {
@@ -49,6 +54,23 @@ class MovieDetailsViewController: UIViewController {
         }
         
     }
+    fileprivate func fetchSimilarMovies(){
+        if NetworkUtils.checkReachable() == false {
+            Dialog.showAlert(viewController: self, title: "Error", message: "No Internet Connection!")
+            return
+        }
+        
+        for index in 0...5 {
+            MovieModel.shared.fetchSimilarMovies(pageId: index, movieId: movieId) { movies in
+                print("Movies Count",movies.count)
+                movies.forEach({ (mov) in
+                self.movieList?.append(MovieInfoResponse.convertToMovieVO(data: mov, realm: self.realm))
+                })
+            }
+        }
+    }
+    
+    
     @IBAction func btnBackAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -67,41 +89,16 @@ class MovieDetailsViewController: UIViewController {
             Dialog.showAlert(viewController: self, title: "Error", message: "No Internet Connection!")
             return
         }
-        
         MovieModel.shared.fetchMovieVideo(movieId: movieId) { (movie) in
-            print("Movies",movie)
-            //let key = movie.first?.key
-//            let key = "t433PEQGErc"
-//            let videoURL = URL(string: "https://www.youtube.com/watch?v=\(key)")
-//            print("vide",videoURL)
-//            let video = AVPlayer(url: videoURL!)
-//            let videoPlayer = AVPlayerViewController()
-//            videoPlayer.player = video
-//            self.present(videoPlayer, animated: true, completion: {
-//                video.play()
-//            if video.status == .failed {
-//                videoPlayer.removeFromParent()
-//            }
-//            })
-            
-            if let path = Bundle.main.path(forResource: "JOKER - Teaser Trailer - Now Playing In Theaters", ofType: "mp4") {
-                let video = AVPlayer(url: URL(fileURLWithPath: path))
-                self.videoPlayer.player = video
-                NotificationCenter.default.addObserver(self, selector: #selector(self.playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.videoPlayer.player?.currentItem)
-                self.present(self.videoPlayer, animated: true, completion: {
-                   self.videoPlayer.player?.play()
-//                    if video.status == .failed {
-//                        videoPlayer.removeFromParent()
-//                    }
-                })
-            }
-            
+            self.key =  movie.first!.key!
+            print("KEY KEY",self.key)
         }
-    }
-    
-    @objc func playerDidFinishPlaying(note: NSNotification) {
-        //self.dismiss(animated: true, completion: nil)
-        self.videoPlayer.dismiss(animated: true, completion: nil)
+        if !self.key.isEmpty {
+            let storboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storboard.instantiateViewController(withIdentifier: String(describing: MovieViewController.self)) as! MovieViewController
+            vc.movieKey = self.key ?? "t433PEQGErc"
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     deinit {
@@ -128,6 +125,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: InnerCollectionViewCell.self), for: indexPath) as! InnerCollectionViewCell
+        item.bindData(self.movieList, movieHeader: "")
         return item
     }
     
@@ -143,4 +141,14 @@ extension MovieDetailsViewController: UICollectionViewDelegate{
             sectionHeader.lblSectionTitle.text = "MORE LIKE THIS"
             return sectionHeader
         }
+}
+
+extension MovieDetailsViewController: MovieDetailsDelegate {
+    func onClickMovieDetails(objMovie: MovieVO) {
+        let storboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storboard.instantiateViewController(withIdentifier: String(describing: MovieDetailsViewController.self)) as! MovieDetailsViewController
+        vc.movieId = objMovie.id
+       // self.window?.rootViewController?.present(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
+    }
 }

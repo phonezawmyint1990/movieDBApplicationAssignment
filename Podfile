@@ -10,4 +10,6 @@ target 'movieDBapplicationAssignment' do
    pod 'SDWebImage', '~> 5.0'
    pod 'ReachabilitySwift'
    pod "YoutubePlayer-in-WKWebView"
+   pod 'IQKeyboardManagerSwift'
+   pod 'FittedSheets'
 end
