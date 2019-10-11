@@ -115,6 +115,7 @@ class MovieModel {
             let response : MovieListResponse? = self.responseHandler(data: data, urlResponse: urlResponse, error: error)
             if let data = response {
                 completion(data.results)
+                print(data.results.count)
             }else{
                 completion([MovieInfoResponse]())
             }

@@ -28,15 +28,21 @@ class MovieDetailsViewController: UIViewController {
     let videoPlayer = AVPlayerViewController()
     let realm = try! Realm()
     var movieList:  [MovieVO]?
+    var moviesInfoList: [MovieInfoResponse]?
     var key = ""
+    var storeMoviesList : Results<MovieVO>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        storeMoviesList = realm.objects(MovieVO.self)
+        
         setUpCollectionViews()
         if let data = MovieVO.getMovieById(movieId: movieId, realm: realm) {
             self.bindData(data: data)
         }
         btnPlay.layer.cornerRadius = 10
         fetchSimilarMovies()
+        moreLikeCollectionView.reloadData()
     }
     
     fileprivate func bindData(data : MovieVO?) {
@@ -54,27 +60,45 @@ class MovieDetailsViewController: UIViewController {
         }
         
     }
-    fileprivate func fetchSimilarMovies(){
+    
+     func fetchSimilarMovies(){
         if NetworkUtils.checkReachable() == false {
             Dialog.showAlert(viewController: self, title: "Error", message: "No Internet Connection!")
             return
         }
-        
-        for index in 0...5 {
-            MovieModel.shared.fetchSimilarMovies(pageId: index, movieId: movieId) { movies in
-                print("Movies Count",movies.count)
-                movies.forEach({ (mov) in
-                self.movieList?.append(MovieInfoResponse.convertToMovieVO(data: mov, realm: self.realm))
-                })
-            }
+//        for index in 0...5 {
+//            MovieModel.shared.fetchSimilarMovies(pageId: index, movieId:movieId) { movies in
+//                print("hhhhh",movies)
+//                self.moviesInfoList = movies
+//            }
+//        }
+//        if moviesInfoList!.count > 0 {
+//            moviesInfoList?.forEach({ (movieInfo) in
+//                let mov = MovieVO()
+//                mov.id = movieInfo.id!
+//                mov.poster_path = movieInfo.poster_path
+//                movieList?.append(mov)
+//            })
+//        }
+        MovieModel.shared.fetchSimilarMovies(pageId: 1, movieId:movieId) { movies in
+                            print("hhhhh",movies)
+                            self.moviesInfoList = movies
+                        }
+            guard let moviesList = self.moviesInfoList else{return}
+            moviesList.forEach { (movList) in
+            let mov = MovieVO()
+            mov.id = movList.id!
+            mov.poster_path = movList.poster_path
+            self.movieList?.append(mov)
         }
+        
     }
     
     
     @IBAction func btnBackAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func btnMovieLikeAction(_ sender: Any) {
         LikeMovieVO.saveMovieBookmark(movieId: movieId, realm: realm)
     }
@@ -90,7 +114,8 @@ class MovieDetailsViewController: UIViewController {
             return
         }
         MovieModel.shared.fetchMovieVideo(movieId: movieId) { (movie) in
-            self.key =  movie.first!.key!
+            guard let returnKey = movie.first?.key else {return}
+            self.key =  returnKey
             print("KEY KEY",self.key)
         }
         if !self.key.isEmpty {
@@ -125,7 +150,8 @@ extension MovieDetailsViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: InnerCollectionViewCell.self), for: indexPath) as! InnerCollectionViewCell
-        item.bindData(self.movieList, movieHeader: "")
+       // item.bindData(self.movieList, movieHeader: "")
+        item.bindData(storeMoviesList?.toArray(type: MovieVO.self), movieHeader: "")
         return item
     }
     

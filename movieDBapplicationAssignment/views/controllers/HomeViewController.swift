@@ -61,6 +61,8 @@ class HomeViewController: UIViewController {
         activityIndicator.stopAnimating()
     }
     
+
+    
     @IBAction func unwindToMain(_ unwindSegue: UIStoryboardSegue) {}
     
     private func setUpCollectionViews(){
@@ -128,6 +130,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Movies"
+        fetchDataFromDatabase()
     }
     
     fileprivate func initMovieListFetchRequest() {

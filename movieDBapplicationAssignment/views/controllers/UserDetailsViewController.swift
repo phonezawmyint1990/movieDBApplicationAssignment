@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class UserDetailsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -15,9 +16,12 @@ class UserDetailsViewController: UIViewController {
     var userId: String?
     var password: String?
     var tokenId:String?
-    
+    var storeMoviesList: Results<MovieVO>?
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
+        storeMoviesList = realm.objects(MovieVO.self)
+        
         self.navigationItem.title = "User Profile Details"
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -27,7 +31,15 @@ class UserDetailsViewController: UIViewController {
         
         collectionView.register(UINib(nibName: String(describing: InnerCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: InnerCollectionViewCell.self))
         collectionView.reloadData()
+        fetchAccountDetails()
         
+    }
+    
+    func fetchAccountDetails(){
+        if NetworkUtils.checkReachable() == false {
+            Dialog.showAlert(viewController: self, title: "Error", message: "No Internet Connection!")
+            return
+        }
         let sessionId = UserDefaults.standard.string(forKey: SESSION_ID)
         print(sessionId)
         MovieModel.shared.fetchAccount(sessionId: "54cc1b8daecc4dfc073ea6fc6cc3aefeb1eb783c") { (returnData) in
@@ -46,10 +58,11 @@ extension UserDetailsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: InnerCollectionViewCell.self), for: indexPath) as! InnerCollectionViewCell
         switch indexPath.row {
-        case 0: break
+        case 0:
            // item.movieList =
-        case 1: break
-           // item.movieList =
+            item.bindData(self.storeMoviesList?.toArray(type: MovieVO.self), movieHeader: "Watch Movies List")
+        case 1: 
+           item.bindData(self.storeMoviesList?.toArray(type: MovieVO.self), movieHeader: "Rates List")
         default:
             break
         }

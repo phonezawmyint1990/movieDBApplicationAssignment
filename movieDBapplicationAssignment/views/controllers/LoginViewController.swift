@@ -41,7 +41,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func btnLoginAction(_ sender: Any) {
-        fetchRequestToken(userId:txtEmail.text!,txtPassword:txtPassword.text!)
+        if txtEmail.text?.isEmpty ?? true {
+            Dialog.showAlert(viewController: self, title: "Error", message: "Please fill Email")
+        }else if txtPassword.text?.isEmpty ?? true {
+            Dialog.showAlert(viewController: self, title: "Error", message: "Please fill Password")
+        }else{
+             fetchRequestToken(userId:txtEmail.text!,txtPassword:txtPassword.text!)
+        }
     }
     
     fileprivate func fetchRequestToken(userId:String,txtPassword:String) {
