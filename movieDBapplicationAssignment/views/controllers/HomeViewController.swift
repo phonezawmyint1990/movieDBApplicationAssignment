@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
         initMovieListFetchRequest()
         fetchDataFromDatabase()
         activityIndicator.stopAnimating()
+        outerCollectionView.reloadData()
     }
     
 

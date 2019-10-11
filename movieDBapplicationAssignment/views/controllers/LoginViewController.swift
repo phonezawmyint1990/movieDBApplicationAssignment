@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
             Dialog.showAlert(viewController: self, title: "Error", message: "Please fill Password")
         }else{
              fetchRequestToken(userId:txtEmail.text!,txtPassword:txtPassword.text!)
+             userProfileLogin()
         }
     }
     
